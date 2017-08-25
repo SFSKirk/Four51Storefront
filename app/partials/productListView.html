@@ -1,38 +1,37 @@
-<div class="panel panel-default" ng-show="products">
-    <div class="panel-heading">
-        <h3 class="panel-title">
-            {{'Products' | r | xlat}}
-        </h3>
+<div class="row" id="shop">
+    <h3 style="margin:50px">{{currentCategory.Name}}</h3>
+    <hr style="width:101%">
+    <div class="row">
+        <p style="margin:30px">{{currentCategory.Description}}</p>
     </div>
-    <div ng-show="productCount > settings.pageSize">
-        <pagination page="settings.currentPage" max-size="10" rotate="false" boundary-links="true" total-items="productCount"
-                    items-per-page="settings.pageSize" direction-links="true" previous-text="{{'Previous' | xlat}}" next-text="{{'Next' | xlat}}" first-text="{{'First' | xlat}}" last-text="{{'Last' | xlat}}"></pagination>
-    </div>
-    <div class="panel-product-list" ng-show="currentCategory.InteropID">
-        <div ng-show="products" class="alert alert-info text-center hidden-sm hidden-md hidden-lg">
-            <i class="fa fa-arrow-circle-o-left"></i>
-            {{'Swipe product left for more info' | xlat}}
-        </div>
-        <nav class="nav">
-            <loadingindicator ng-show="searchLoading" title="{{'Please wait while we fetch all products' | r | xlat}}" />
-            <div class="row view-form-icon" ng-show="currentCategory.SortOptions.length > 0">
-                <div class="col-xs-9">
-                    <label>{{'Sort by' | r | xlat}}</label>
-                    <select class="form-control" ng-options="option.SortValue as (option.Display | xlat) for option in currentCategory.SortOptions" ng-model="sort"><option value=""></option></select>
-                    <i class="fa fa-sort"/>
+    <hr style="width:101%">
+    <div class="container">
+        <div class="row">
+          <loadingindicator ng-show="searchLoading" title="{{'Please wait while we fetch all products' | r | xlat}}" />
+            <div class="col-sm-12 content-area">
+                <div ng-show="productCount > settings.pageSize">
+                    <pagination page="settings.currentPage" max-size="10" rotate="false" boundary-links="true" total-items="productCount"
+                                items-per-page="settings.pageSize" direction-links="true" previous-text="{{'Previous' | xlat}}" next-text="{{'Next' | xlat}}" first-text="{{'First' | xlat}}" last-text="{{'Last' | xlat}}"></pagination>
                 </div>
-            </div>
-            <ul>
-                <li id="451_lst_prod" ng-repeat="product in products | paginate:(settings.currentPage-1) * settings.pageSize | limitTo:settings.pageSize | orderBy:sorter:direction">
-                    <div class="well">
-                        <shortproductview p="product" user="user" />
-                    </div>
-                </li>
-            </ul>
-        </nav>
-    </div>
-    <div ng-show="productCount > settings.pageSize">
-        <pagination page="settings.currentPage" max-size="10" rotate="false" boundary-links="true" total-items="productCount"
-            items-per-page="settings.pageSize" direction-links="true" previous-text="{{'Previous' | xlat}}" next-text="{{'Next' | xlat}}" first-text="{{'First' | xlat}}" last-text="{{'Last' | xlat}}"></pagination>
-    </div>
+                <div id="grid" class="row">
+                    <!-- product -->
+                    <div class="col-xs-6 col-md-3 product" ng-repeat="product in products | paginate:(settings.currentPage-1) * settings.pageSize | limitTo:settings.pageSize | orderBy:sorter:direction">
+                      <shortproductview p="product" user="user" />
+                    </div><!-- / product -->
+
+                    <!-- grid-resizer -->
+                    <div class="col-xs-6 col-md-3 shuffle_sizer"></div>
+                    <!-- / grid-resizer -->
+
+                </div><!-- / row -->
+
+                <div ng-show="productCount > settings.pageSize" class="pagination">
+                    <pagination page="settings.currentPage" max-size="10" rotate="false" boundary-links="true" total-items="productCount"
+                        items-per-page="settings.pageSize" direction-links="true" previous-text="{{'Previous' | xlat}}" next-text="{{'Next' | xlat}}" first-text="{{'First' | xlat}}" last-text="{{'Last' | xlat}}"></pagination>
+                </div>
+
+            </div><!-- / content-area -->
+
+        </div><!-- / row -->
+    </div><!-- / container -->
 </div>
