@@ -1,5 +1,5 @@
 <loadingindicator ng-show="searchLoading" title="{{'Please wait while we fetch all products' | r}}" />
-<section>
+<!--<section>
     <div class="panel panel-search">
         <div class="panel-heading">
             <h3 class="panel-title">
@@ -11,9 +11,8 @@
                 <div class="view-form-icon">
                     <div class="input-group">
                         <input type="text" ng-model="searchTerm"  class="form-control" placeholder="{{('Search' | r) + ' ' + ('Products' | r) | xlat}}" autocomplete="off" />
-                        <i class="fa fa-search"></i>
                         <div class="input-group-btn">
-                            <button type="submit" ng-click="search()" class="btn btn-default">{{'Search' | r | xlat}}</button>
+                            <button type="submit" ng-click="search()" class="btn btn-primary btn-coupon" style="margin-top:-15px">{{'Search' | r | xlat}}</button>
                         </div>
                     </div>
                 </div>
@@ -42,4 +41,52 @@
                         items-per-page="settings.pageSize" direction-links="true" previous-text="{{'Previous' | xlat}}" next-text="{{'Next' | xlat}}" first-text="{{'First' | xlat}}" last-text="{{'Last' | xlat}}"></pagination>
         </div>
     </div>
-</section>
+</section>-->
+<div class="row" id="shop">
+    <div class="container"
+        <form role="search">
+            <div class="view-form-icon">
+                <div class="input-group">
+                    <input type="text" ng-model="searchTerm"  class="form-control" placeholder="{{('Search' | r) + ' ' + ('Products' | r) | xlat}}" autocomplete="off" />
+                    <div class="input-group-btn">
+                        <button type="submit" ng-click="search()" class="btn btn-primary btn-coupon">{{'Search' | r | xlat}}</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div ng-show="productCount == 0" class="panel-product-list">
+        <p class="alert alert-info">
+            {{'Your search resulted in no records. Please refine your search.' | r | xlat}}
+        </p>
+    </div>
+    <div class="container">
+        <div class="row">
+          <loadingindicator ng-show="searchLoading" title="{{'Please wait while we fetch all products' | r | xlat}}" />
+            <div class="col-sm-12 content-area">
+                <div ng-show="productCount > settings.pageSize">
+                    <pagination page="settings.currentPage" max-size="10" rotate="false" boundary-links="true" total-items="productCount"
+                                items-per-page="settings.pageSize" direction-links="true" previous-text="{{'Previous' | xlat}}" next-text="{{'Next' | xlat}}" first-text="{{'First' | xlat}}" last-text="{{'Last' | xlat}}"></pagination>
+                </div>
+                <div id="grid" class="row">
+                    <!-- product -->
+                    <div class="col-xs-6 col-md-3 product" ng-repeat="product in products | paginate:(settings.currentPage-1) * settings.pageSize | limitTo:settings.pageSize | orderBy:sorter:direction">
+                      <shortproductview p="product" user="user" />
+                    </div><!-- / product -->
+
+                    <!-- grid-resizer -->
+                    <div class="col-xs-6 col-md-3 shuffle_sizer"></div>
+                    <!-- / grid-resizer -->
+
+                </div><!-- / row -->
+
+                <div ng-show="productCount > settings.pageSize" class="pagination">
+                    <pagination page="settings.currentPage" max-size="10" rotate="false" boundary-links="true" total-items="productCount"
+                        items-per-page="settings.pageSize" direction-links="true" previous-text="{{'Previous' | xlat}}" next-text="{{'Next' | xlat}}" first-text="{{'First' | xlat}}" last-text="{{'Last' | xlat}}"></pagination>
+                </div>
+
+            </div><!-- / content-area -->
+
+        </div><!-- / row -->
+    </div><!-- / container -->
+</div>
