@@ -1,4 +1,4 @@
-<section>
+<!--<section>
     <nav id="451qa_nav_hdr" class="nav">
         <ul>
             <li class="hidden-sm hidden-xs">
@@ -15,7 +15,7 @@
         </ul>
     </nav>
     <div class="row">
-        <aside class="col-md-3 visible-md visible-lg" ng-if="navStatus.visible">
+        <aside class="col-md-2 visible-md visible-lg" ng-if="navStatus.visible">
             <div class="panel panel-default panel-nav">
                 <div class="panel-heading">
                     <h3 class="panel-title">
@@ -39,4 +39,9 @@
 
         </div>
     </div>
-</section>
+</section>-->
+<categorylistview></categorylistview>
+
+<loadingindicator ng-show="productLoadingIndicator" title="{{'Please wait while we fetch all products' | r | xlat}}"/>
+
+<productlistview></productlistview>
