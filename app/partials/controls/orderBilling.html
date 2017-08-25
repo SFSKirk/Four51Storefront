@@ -1,12 +1,10 @@
-<div class="panel panel-default panel-order">
-    <div class="panel-heading" ng-class="{'no': cart_billing.$invalid, 'yes': !cart_billing.$invalid, 'open': checkOutSection == 'billing' }">
-        <h3 ng-click="checkOutSection = 'billing'" class="panel-title">
-            <i class="pull-left" ng-class="{'fa fa-warning': cart_billing.$invalid, 'fa fa-check-circle': !cart_billing.$invalid }"></i>
+<div class="row">
+    <div class="" ng-class="{'no': cart_billing.$invalid, 'yes': !cart_billing.$invalid, 'open': checkOutSection == 'billing' }">
+        <h3 ng-click="checkOutSection = 'billing'">
             {{'Billing' | r | xlat}}
-            <i class="pull-right" ng-class="{'fa fa-caret-up': checkOutSection == 'billing', 'fa fa-caret-down': checkOutSection == 'shipping' || checkOutSection == 'order' }"></i>
         </h3>
     </div>
-    <div collapse="checkOutSection != 'billing'" class="panel-body">
+    <div>
         <div>
             <billingmessage />
         </div>
@@ -24,7 +22,9 @@
                                     ng-options="address.ID as address.AddressName for address in billaddresses | filter:{IsBilling:true}" ng-model="currentOrder.BillAddressID" ng-required="currentOrder.BillingEnabled">
                                 <option value=""></option>
                             </select>
-                            <i class="fa fa-map-marker"></i>
+                            <div ng-show="cart_billing.billingAddress.$invalid" class="error" role="alert">
+                              <div ng-message="required">{{'Please choose a ' + ('Billing' | rl) + ' ' + ('Address' | rl) | xlat}}</div>
+                            </div>
                         </div>
                     </div>
                     <div class="order-location" ng-show="BillAddress">
@@ -38,10 +38,16 @@
                             <div class="col-sm-2">
                                 <input class="form-control" name="billingFirstName" ng-required="currentOrder.BillingEnabled && user.Permissions.contains('EditBillToName') && !BillAddress.IsCustEditable" type="text" ng-model="currentOrder.BillFirstName"
                                        placeholder="{{('First' | r) + ' ' + ('Name' | r) | xlat}}" autocomplete="off" />
+                                <div ng-show="currentOrder.BillingEnabled && cart_billing.billingFirstName.$invalid" class="error" role="alert">
+                                  <div ng-message="required">{{'Please enter a ' + ('Billing' | rl) + ' ' + ('First Name' | rl) | xlat}}</div>
+                                </div>
                             </div>
                             <div class="col-sm-2">
                                 <input class="form-control" name="billingLastName" ng-required="currentOrder.BillingEnabled && user.Permissions.contains('EditBillToName') && !BillAddress.IsCustEditable" type="text" ng-model="currentOrder.BillLastName"
                                        placeholder="{{('Last' | r) + ' ' + ('Name' | r) | xlat}}"  />
+                                <div ng-show="currentOrder.BillingEnabled && cart_billing.billingLastName.$invalid" class="error" role="alert">
+                                  <div ng-message="required">{{'Please enter a ' + ('Billing' | rl) + ' ' + ('Last Name' | rl) | xlat}}</div>
+                                </div>
                             </div>
                         </div>
                         <p ng-show="BillAddress.Street1"><small>{{BillAddress.Street1}}</small></p>
