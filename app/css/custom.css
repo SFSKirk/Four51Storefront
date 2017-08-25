@@ -4,3 +4,21 @@ Theme name: My SPA Theme
 Version: 1.0
 Template: Howdy
 */
+
+.jetzoom-lens {
+     border: none;
+     width: 80%;
+     height: 80%;
+     border-radius: 20px;
+     box-shadow: 0 0 10px rgba(0,0,0,.4);
+     cursor: none;
+}
+.view-form-icon i {
+    color: #cccccc;
+    left: 0;
+    position: absolute;
+    top: 13px;
+    z-index: 2;
+    width: 30px;
+    text-align: center;
+}
