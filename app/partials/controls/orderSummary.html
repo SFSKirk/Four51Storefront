@@ -1,10 +1,10 @@
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title panel-primary">
+<div class="row">
+    <div>
+        <h3>
             {{('Checkout' | r) + ' ' + ('Summary' | r) | xlat}}
         </h3>
     </div>
-    <div class="panel-body">
+    <div>
         <loadingindicator ng-show="couponLoadingIndicator" title="{{'Please wait while we verify and apply your promotion code' | r | xlat}}" />
         <loadingindicator ng-show="couponRemoveIndicator" title="{{'Please wait while we remove your promotion code' | r | xlat}}" />
         <orderconfirmationmessage />
@@ -32,10 +32,9 @@
                         <div class="input-group">
                             <input class="form-control" type="text" ng-model="currentOrder.CouponCode" placeholder="{{('Promotion' | r) + ' ' + ('Code' | r) | xlat}}" autocomplete="off"/>
                             <span class="input-group-btn">
-                                <button type="button" class="btn btn-success" ng-click="applyCoupon()"><i class="fa fa-check"></i></button>
+                                <button type="button" class="btn btn-success btn-coupon" ng-click="applyCoupon()"><i class="fa fa-check"></i></button>
                             </span>
                         </div>
-                        <i class="fa fa-question-circle"></i>
                     </div>
                 </div>
             </div>
@@ -59,8 +58,7 @@
             <div class="form-group">
                 <label ng-show="currentOrder.ExternalOrderDetailRecipients">{{('Email' | r) + ' ' + ('Notification' | r) | xlat}}</label>
                 <input class="form-control" ng-disabled="cart_shipping.$invalid || cart_order.$invalid || cart_billing.$invalid" type="email" ng-model="currentOrder.ExternalOrderDetailRecipients" placeholder="{{('Email' | r) + ' ' +  ('Address' | r) | xlat}}" autocomplete="off" />
-                <i class="fa fa-envelope-o"></i>
-                <span class="help-block text-left"><small>{{'Send a copy of the order details to above email address.' | r | xlat}}</small></span>
+                <span class="help-block text-left"><small>{{'Provide an email address if you would like to receive ' + ('Notification' | r) + 's concerning this order.' | r | xlat}}</small></span>
             </div>
         </div>
         <button class="btn btn-default" redirect="/security">
