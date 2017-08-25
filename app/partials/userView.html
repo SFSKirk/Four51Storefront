@@ -1,3 +1,4 @@
+<div class="container">
 <section class="user-view">
     <div class="hidden-md hidden-lg" ng-class="{'panel panel-default':!user.Permissions.contains('ViewSelfAdmin')}">
         <div class="panel-heading" ng-show="!user.Permissions.contains('ViewSelfAdmin')">
@@ -90,22 +91,18 @@
                     <div>
                         <label ng-show="user.FirstName">{{('First' | r) + ' ' + ('Name' | r) | xlat}}</label>
                         <input name="firstname" class="form-control" type="text" required ng-model="user.FirstName" placeholder="{{('First' | r) + ' ' + ('Name' | r) | xlat}}" autocomplete="off" />
-                        <i class="fa fa-user"></i>
                     </div>
                     <div>
                         <label ng-show="user.LastName">{{('Last' | r) + ' ' + ('Name' | r) | xlat}}</label>
                         <input name="lastname" required class="form-control" type="text" ng-model="user.LastName" placeholder="{{('Last' | r) + ' ' + ('Name' | r) | xlat}}" autocomplete="off" />
-                        <i class="fa fa-user"></i>
                     </div>
                     <div>
-                        <label ng-show="user.Phone">{{'Phone' | r | xlat}}</label>
+                        <label>{{'Phone' | r | xlat}}</label>
                         <input name="phone" class="form-control" type="text" ng-model="user.Phone" ui-mask="(999) 999-9999" autocomplete="off" />
-                        <i class="fa fa-phone"></i>
                     </div>
                     <div>
                         <label class="required">{{'Email' | r | xlat}}</label>
                         <input name="email" class="form-control" type="email" ng-model="user.Email" required placeholder="{{'Email' | r | xlat}}" autocomplete="off" />
-                        <i class="fa fa-envelope-o"></i>
                         <inlineerror ng-show="user_form.email.$invalid" title="{{'Please enter a valid' + ' ' +  ('Email' | rl) + ' ' + ('Address' | rl) | xlat}}" />
                     </div>
                 </div>
@@ -113,18 +110,15 @@
                     <div>
                         <label class="required">{{'Username' | r | xlat}}</label>
                         <input name="username" class="form-control" type="text" ng-model="user.TempUsername" required placeholder="{{'Username' | r | xlat}}" autocomplete="off" />
-                        <i class="fa fa-user"></i>
                     </div>
                     <!--TODO username input shouldn't default to temporary usernames, if the user is temp, make the placeholder show instead !-->
                     <div>
-                        <label ng-show="user.Password">{{'Password' | r | xlat}}</label>
+                        <label>{{'Password' | r | xlat}}</label>
                         <input name="password" class="form-control" ng-required="user.Type == 'TempCustomer'" type="password" ng-model="user.Password" placeholder="{{'Password' | r | xlat}}" autocomplete="off" />
-                        <i class="fa fa-lock"></i>
                     </div>
                     <div>
-                        <label ng-show="user.ConfirmPassword">{{('Confirm' | r) + ' ' + ('Password' | r) | xlat}}</label>
+                        <label>{{('Confirm' | r) + ' ' + ('Password' | r) | xlat}}</label>
                         <input name="confirm_password" ng-match="user.Password" ng-required="user.Type == 'TempCustomer' || user.Password" class="form-control" type="password" ng-model="user.ConfirmPassword" placeholder="{{('Confirm' | r) + ' ' + ('Password' | r) | xlat}}" autocomplete="off" />
-                        <i class="fa fa-lock"></i>
                         <inlineerror ng-show="user_form.confirm_password.$error.match" title="{{('Password' | r) + 's do not match!' | xlat}}" />
                     </div>
                     <span class="alert-warning" ng-show="securityWarning">
@@ -174,3 +168,4 @@
         </div>
     </form>
 </section>
+</div>
