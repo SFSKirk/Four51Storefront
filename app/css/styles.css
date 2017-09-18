@@ -4340,7 +4340,7 @@ body.demo {
     font-size: 20px;
     line-height: 20px;
     font-weight: 700;
-    height: 50px;
+    height: auto;
     padding: 15px 15px;
   }
 
